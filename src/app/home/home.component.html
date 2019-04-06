@@ -1,11 +1,28 @@
-<div class="intro-screen">
-  <img src="https://www.worldtravelguide.net/wp-content/uploads/2017/04/Think-CookIslands-Rarotonga-506551148-sorincolac-copy.jpg">
-  <div class="jumbotron">
-      <i class="material-icons">all_inclusive</i>
-    <h1 class="display-4">Plan your next trip with us!</h1>
-    <p class="lead">This app helps you plan your trip and offers you inspiring ideas for your new adventures.</p>
-    <p class="lead">
-      <a class="btn btn-outline-dark btn-lg" routerLink="/register" role="button">Start Planing</a>
-    </p>
-  </div>
+<ng-container *ngIf="(user$ | async); then userView else guestView ">
+
+</ng-container>
+
+<ng-template #guestView>
+  <div class="jumbotron guest-view">
+    <i class="material-icons">all_inclusive</i>
+  <h1 class="display-4 font-weight-normal">Plan your next trip with us!</h1>
+  <p class="lead">This app helps you plan your trip and offers you inspiring ideas for your new adventures.</p>
+  <p class="lead">
+    <a class="btn btn-outline-dark btn-lg" routerLink="/user/register" role="button">Start Planing</a>
+  </p>
 </div>
+
+</ng-template>
+
+<ng-template #userView>
+  <app-navigation></app-navigation>
+  <div class="jumbotron bg-light">
+  <h1 class="display-4 font-weight-normal">Wellcome User!</h1>
+  <p class="lead">Start planning your next trip or check what you have already in store from the navigation bar above.</p>
+  <hr class="my-4">
+  <p>If you are out of ideas check out our featured destinations below.</p>
+</div>
+
+</ng-template>
+
+

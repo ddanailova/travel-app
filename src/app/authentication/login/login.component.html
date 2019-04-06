@@ -1,13 +1,19 @@
-<form>
+<form #form="ngForm" (submit)="loginHandler(form)">
     <div class="form-group">
       <label for="email">Email</label>
-      <input class="form-control" type="email" id="email" name="email">
+      <input [ngClass]="{'is-invalid': email.touched && (email.errors?.pattern || email.errors?.required)}" class="form-control" type="email" id="email" name="email" #email="ngModel" ngModel pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+      <div class="invalid-feedback">
+          Please provide a valid email in the format: example@example.com
+      </div>
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input class="form-control" type="password" id="password" name="password">
+      <input [ngClass]="{'is-invalid': password.touched && (password.errors?.pattern || password.errors?.required)}" class="form-control" type="password" id="password" name="password" #password="ngModel" ngModel pattern="(?=^.{6,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required>
+      <div class="invalid-feedback">
+          Password should be at least 6 characters (digits, lowercase and uppercase letters)!
+      </div>
     </div>
-    <div class="form-group">
-      <button class="btn btn-primary" type="submit">Login</button>
+    <div class="form-group text-center">
+      <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Login</button>
     </div>
 </form>
