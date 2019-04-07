@@ -14,6 +14,7 @@ import {  BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 
 
@@ -29,7 +30,6 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     SharedModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    // AuthenticationModule
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,

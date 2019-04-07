@@ -1,4 +1,4 @@
-<ng-container *ngIf="(user$ | async); then userView else guestView ">
+<ng-container *ngIf="!user && !isLoading; then guestView else userView ">
 
 </ng-container>
 
@@ -8,21 +8,32 @@
   <h1 class="display-4 font-weight-normal">Plan your next trip with us!</h1>
   <p class="lead">This app helps you plan your trip and offers you inspiring ideas for your new adventures.</p>
   <p class="lead">
-    <a class="btn btn-outline-dark btn-lg" routerLink="/user/register" role="button">Start Planing</a>
+    <a class="btn btn-outline-dark btn-lg" routerLink="/auth/register" role="button">Start Planing</a>
   </p>
-</div>
-
+  </div>
 </ng-template>
 
 <ng-template #userView>
+    <ng-container *ngIf="isLoading; then loadingView else loggedInView ">
+
+      </ng-container>
+
+</ng-template>
+
+<ng-template #loggedInView>
   <app-navigation></app-navigation>
   <div class="jumbotron bg-light">
-  <h1 class="display-4 font-weight-normal">Wellcome User!</h1>
+  <h1 class="display-4 font-weight-normal">Welcome {{user.displayName}}</h1>
   <p class="lead">Start planning your next trip or check what you have already in store from the navigation bar above.</p>
   <hr class="my-4">
   <p>If you are out of ideas check out our featured destinations below.</p>
-</div>
+  </div>
+</ng-template>
 
+<ng-template #loadingView>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
 </ng-template>
 
 

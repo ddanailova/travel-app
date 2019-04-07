@@ -1,4 +1,4 @@
-.jumbotron.guest-view {
+.jumbotron.guest-view{
   transform: translateY(25vh);
   background-color: rgba(#333, 0.3);
   color: white;
@@ -20,5 +20,9 @@
       text-shadow: none;
     }
   }
+}
+
+.spinner-border {
+  margin-top: 45vh;
 }
 

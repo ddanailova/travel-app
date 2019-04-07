@@ -5,9 +5,9 @@ import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
-import { Observable, of as observableOf} from 'rxjs';
+import { Observable, of as observableOf } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { IUser } from '../shared/models';
+import { IUser } from '../../shared/models';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
@@ -26,9 +26,9 @@ export class AuthService {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         // Logged in
-        if(user){
+        if (user) {
           return this.afs.doc<IUser>(`users/${user.uid}`).valueChanges()
-        }else {
+        } else {
           //Logged out
           return observableOf(null)
         }
@@ -36,37 +36,39 @@ export class AuthService {
     )
   }
 
-  async emailPasswordRegistration(email: string, password: string, displayName: string){   
-    try{
-      const {user} = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+  async emailPasswordRegistration(email: string, password: string, displayName: string) {
+    try {
+      const { user } = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
       this.setUserData(user, displayName);
-      this.router.navigate(['/user/login']);
-    }catch(error){
+      this.toastrService.success('Registration successful! You can login to your account.', 'Success');
+      this.router.navigate(['/auth/login']);
+    } catch (error) {
       this.handleError(error)
     }
-}
+  }
 
   /// Email/Password Authentication ///
-  async emailPasswordLogin(email: string, password: string){   
-      try{
-        await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-        this.router.navigate(['/']);
-      }catch(error){
-        this.handleError(error)
-      }
-      
+  async emailPasswordLogin(email: string, password: string) {
+    try {
+      await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+      this.toastrService.success('Login successful!', 'Success');
+      this.router.navigate(['/user/home']);
+    } catch (error) {
+      this.handleError(error)
+    }
+
   }
 
 
   //If error, console log and notify the user
-  private handleError(error){
+  private handleError(error) {
     console.log(error);
     this.toastrService.error(error.message, 'Error');
   }
 
   //Set user data to firestore after succesful registration
-  private setUserData(user, displayName: string){
-    const userRef: AngularFirestoreDocument<IUser>=this.afs.doc(`users/${user.uid}`);
+  private setUserData(user, displayName: string) {
+    const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${user.uid}`);
 
     const data: IUser = {
       uid: user.uid,
@@ -77,7 +79,12 @@ export class AuthService {
   }
 
   async logOut() {
-    await this.afAuth.auth.signOut();
-    this.router.navigate(['/']);
+    try {
+      await this.afAuth.auth.signOut();
+      this.toastrService.success('Logout successful!', 'Success');
+      this.router.navigate(['/home']);
+    } catch (error) {
+      this.handleError(error)
+    }
   }
 }
