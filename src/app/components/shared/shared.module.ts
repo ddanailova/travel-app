@@ -4,12 +4,16 @@ import { HomeComponent } from './home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
+import { CardComponent } from './card/card.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     NavigationComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CardComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +22,9 @@ import { RouterModule } from '@angular/router';
   exports: [
     HomeComponent,
     NavigationComponent,
-    NotFoundComponent
+    FooterComponent,
+    NotFoundComponent,
+    CardComponent
   ]
 })
 export class SharedModule { }

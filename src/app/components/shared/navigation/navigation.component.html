@@ -5,7 +5,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" routerLink="/user/home">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" routerLink="/user/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
       <ng-container *ngIf="isAdmin;then forAdmin else forUser"></ng-container>
       <a class="nav-item nav-link" (click)="logOut()">Logout</a>
     </div>
@@ -13,10 +13,10 @@
 </nav>
 
 <ng-template #forUser>
-  <a class="nav-item nav-link" routerLink="/trip/create">Start Planning</a>
-  <a class="nav-item nav-link" routerLink="/trip/all">My Trips</a>
+  <a class="nav-item nav-link" routerLink="/trip/create" routerLinkActive="active">Start Planning</a>
+  <a class="nav-item nav-link" routerLink="/trip/all" routerLinkActive="active">My Trips</a>
 </ng-template>
 <ng-template #forAdmin>
-  <a class="nav-item nav-link" routerLink="/trip/featured/create">Create Featured</a>
-  <a class="nav-item nav-link" routerLink="/trip/featured/all">All Trips</a>
+  <a class="nav-item nav-link" routerLink="/trip/featured/create" routerLinkActive="active">Create Featured</a>
+  <a class="nav-item nav-link" routerLink="/trip/featured/all" routerLinkActive="active">All Trips</a>
 </ng-template>

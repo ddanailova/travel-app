@@ -3,6 +3,11 @@ button:disabled{
     cursor: not-allowed;
 }
 
+img {
+    width:100%;
+    height:auto;
+}
+
 input {
     background: rgba(0, 105, 217, 0.03);
 }
@@ -20,3 +25,4 @@ input {
     border-radius: 0.3rem;
     padding: 1rem 1.5rem;
 }
+

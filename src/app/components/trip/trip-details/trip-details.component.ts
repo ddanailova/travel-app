@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-trip-details',
@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trip-details.component.scss']
 })
 export class TripDetailsComponent implements OnInit {
-
-  constructor() { }
+  fromDetails:boolean
+  constructor() { 
+  }
 
   ngOnInit() {
+
   }
 
 }

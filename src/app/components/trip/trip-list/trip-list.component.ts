@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TripListComponent implements OnInit {
 
+  fromList: boolean;
   constructor() { }
 
   ngOnInit() {
