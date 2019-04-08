@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar navbar-dark bg-dark">
+  <a class="navbar-brand" routerLink="/user/home"><i class="material-icons">all_inclusive</i></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" routerLink="/user/home">Home <span class="sr-only">(current)</span></a>
+      <ng-container *ngIf="isAdmin;then forAdmin else forUser"></ng-container>
+      <a class="nav-item nav-link" (click)="logOut()">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<ng-template #forUser>
+  <a class="nav-item nav-link" routerLink="/trip/create">Start Planning</a>
+  <a class="nav-item nav-link" routerLink="/trip/all">My Trips</a>
+</ng-template>
+<ng-template #forAdmin>
+  <a class="nav-item nav-link" routerLink="/trip/featured/create">Create Featured</a>
+  <a class="nav-item nav-link" routerLink="/trip/featured/all">All Trips</a>
+</ng-template>

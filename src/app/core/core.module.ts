@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavigationComponent } from './navigation/navigation.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { ResponseHandlerInterceptor } from './interceptors/response-handler.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+
 
 @NgModule({
-  declarations: [NavigationComponent, NotFoundComponent],
   imports: [
-    CommonModule
+  CommonModule,
   ],
-  exports: [NavigationComponent]
+  providers:[
+
+  ]
 })
 export class CoreModule { }

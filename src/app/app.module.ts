@@ -7,21 +7,18 @@ import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from './components/shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
 import {  BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AuthenticationModule } from './authentication/authentication.module';
-
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ResponseHandlerInterceptor } from './core/interceptors/response-handler.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +32,9 @@ import { AuthenticationModule } from './authentication/authentication.module';
     AngularFirestoreModule,
     AngularFireAuthModule,
   ],
-  providers: [],
+  providers: [
+   
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
