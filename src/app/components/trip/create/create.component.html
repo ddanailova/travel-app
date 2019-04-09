@@ -1,51 +1,19 @@
 
     <app-navigation></app-navigation>
-    <div class="row translateY-15vh w-100">
-        <div class="col-1">
-        </div>
-      <div class="col-5 bg-light custom-box mr-5">
-        <h1 class="text-center pb-3">Create Trip</h1>
-        <form>
-            <div class="form-group">
-                <label for="destination">Destination</label>
-                <input type="text" class="form-control" id="destination">
+    <div calss="container">
+        <div class="row translateY-15vh mb-5">
+            <div class="col-2">
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="startDate">Start Date</label>
-                  <input type="date" class="form-control" id="startDate">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="endDate">End Date</label>
-                  <input type="date" class="form-control" id="endDate">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="image">Image</label>
-                <input type="text" class="form-control" id="image">
-            </div>
-            <div class="form-group">
-                <label for="destination">Places to visit</label>
-                <textarea class="form-control" id="destination" rows="5"></textarea>
-            </div>
-            <div class="form-group">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="private">
-                <label class="form-check-label" for="private">
-                  Keep private
-                </label>
-              </div>
-            </div>
-            <div class="form-group text-center">
-                <button type="submit" class="btn btn-primary ml-auto mr-auto">Looks Good!</button>
-            </div>
-          </form>
-      </div>
-      <div class="col-5 bg-light custom-box">
-          <h2 class="text-center pb-3">Preview</h2>
-          <app-card [fromCreate]="true"></app-card>
-      </div>
-      <div class="col-1">
+          <div class="col-4 bg-light custom-box mr-5">
+            <h1 class="text-center pb-3">Create Trip</h1>
+            <app-form [fromTrip]="true" (formDataEmitter)="formDataHandler($event)"></app-form>
+          </div>
+          <div class="col-4 bg-light custom-box">
+              <h2 class="text-center pb-3">Preview</h2>
+              <app-card [fromCreate]="true" [formData]="formData" (clickButtonEmitter)="(submitFormHandler($event))"></app-card>
+          </div>
+          <div class="col-2">
+          </div>
         </div>
     </div>
     <app-footer></app-footer>

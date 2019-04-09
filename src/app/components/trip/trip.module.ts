@@ -6,6 +6,7 @@ import { TripDetailsComponent } from './trip-details/trip-details.component';
 import { TripListComponent } from './trip-list/trip-list.component';
 import { TripRoutingModule } from './trip-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { TripService } from 'src/app/core/services/trip.service';
 
 @NgModule({
   declarations: [CreateComponent, EditComponent, TripDetailsComponent, TripListComponent],
@@ -15,6 +16,9 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule
   ],
   exports:[
+  ],
+  providers:[
+    TripService
   ]
 })
 export class TripModule { }

@@ -6,6 +6,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
 import { CardComponent } from './card/card.component';
 import { FooterComponent } from './footer/footer.component';
+import { FormComponent } from './form/form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,18 +15,21 @@ import { FooterComponent } from './footer/footer.component';
     NavigationComponent,
     NotFoundComponent,
     CardComponent,
-    FooterComponent
+    FooterComponent,
+    FormComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   exports: [
     HomeComponent,
     NavigationComponent,
     FooterComponent,
     NotFoundComponent,
-    CardComponent
+    CardComponent,
+    FormComponent
   ]
 })
 export class SharedModule { }

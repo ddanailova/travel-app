@@ -1,6 +1,7 @@
 .card {
   transform: translateY(15vh);
-  min-width: 25rem;
+  width: 25rem;
+  margin: 0 auto;
 
   .card-header {
     padding: 0;
