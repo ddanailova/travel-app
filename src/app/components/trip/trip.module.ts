@@ -16,6 +16,7 @@ import { TripService } from 'src/app/core/services/trip.service';
     SharedModule
   ],
   exports:[
+    
   ],
   providers:[
     TripService,

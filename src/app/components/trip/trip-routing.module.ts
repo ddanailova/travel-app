@@ -6,6 +6,7 @@ import { EditComponent } from './edit/edit.component';
 import { TripDetailsComponent } from './trip-details/trip-details.component';
 import { TripListComponent } from './trip-list/trip-list.component';
 import { UserTripsResolver } from 'src/app/core/resolvers/user-trips.resolver';
+import { SingleTripResolver } from 'src/app/core/resolvers/single-trip.resolver';
 
 const routes: Routes =[
   { path: "", pathMatch: "full", redirectTo: "mine" },
@@ -37,6 +38,7 @@ const routes: Routes =[
   {
     path:'details/:id',
     component:TripDetailsComponent,
+    resolve:{tripData: SingleTripResolver}
   },
   {
     path:'featured/details/:id',
@@ -51,6 +53,7 @@ const routes: Routes =[
   exports: [],
   providers:[
     UserTripsResolver,
+    SingleTripResolver
   ]
 })
 

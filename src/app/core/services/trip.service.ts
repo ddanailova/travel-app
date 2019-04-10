@@ -3,7 +3,8 @@ import { ITrip } from '../models';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -38,9 +39,21 @@ export class TripService {
               id: item.payload.doc.id,
               ...item.payload.doc.data()
             } as ITrip;
-          })
-        })
+          }
+        )}
       )
+    )
+  }
+
+  getById(id:string){
+    return this.firesore.collection<ITrip>('trips').doc(id).snapshotChanges().pipe(
+      map(docArray => {
+        return {
+          id:id,
+          ...docArray.payload.data()
+        } as ITrip;
+      })
+    )
   }
 
   //If error, console log and notify the user
