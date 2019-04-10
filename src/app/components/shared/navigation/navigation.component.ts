@@ -10,7 +10,7 @@ import { AuthService } from '../../../core/services/auth.service';
 export class NavigationComponent implements OnInit {
   isAdmin:boolean;
   constructor(private authService: AuthService) { 
-    this.isAdmin = authService.isAdmin();
+    this.isAdmin = authService.isAdmin;
   }
 
   ngOnInit() {

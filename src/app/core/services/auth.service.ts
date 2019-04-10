@@ -17,6 +17,8 @@ export class AuthService {
 
   user$: Observable<IUser>;
 
+  private _isAuth = false;
+  
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
@@ -27,6 +29,7 @@ export class AuthService {
       switchMap(user => {
         // Logged in
         if (user) {
+          this._isAuth=true;
           return this.afs.doc<IUser>(`users/${user.uid}`).valueChanges()
         } else {
           //Logged out
@@ -34,6 +37,13 @@ export class AuthService {
         }
       })
     );
+  }
+
+  get isAdmin(){
+    return !!localStorage.getItem('adminId');
+  }
+  get isAuth(){
+    return this._isAuth || (!!localStorage.getItem('uid') || this.isAdmin);
   }
 
   async emailPasswordRegistration(email: string, password: string, displayName: string) {
@@ -65,8 +75,6 @@ export class AuthService {
 
   }
 
-
-  
   //Set user data to firestore after succesful registration
   private setUserData(user, displayName: string) {
     const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${user.uid}`);
@@ -84,6 +92,7 @@ export class AuthService {
   async logOut() {
     try {
       await this.afAuth.auth.signOut();
+      this._isAuth=false;
       localStorage.clear()
       this.toastrService.success('Logout successful!', 'Success');
       this.router.navigate(['/home']);
@@ -101,10 +110,7 @@ export class AuthService {
     }
   }
   
-  isAdmin(){
-    return !!localStorage.getItem('adminId');
-  }
-  
+
   //If error, console log and notify the user
   private handleError(error) {
     console.log(error);
