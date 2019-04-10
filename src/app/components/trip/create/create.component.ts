@@ -9,30 +9,39 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
-  fromTrip:boolean;
-  fromCreate:boolean;
-  formData:ITrip;
-  isVerified:boolean;
+  fromTrip: boolean;
+  fromCreate: boolean;
+  formData: ITrip;
+  isVerified: boolean;
 
   constructor(
-    private tripService:TripService,
+    private tripService: TripService,
     private toastrService: ToastrService
-    ) { 
-    // this.formData=this.tripService.formData;
-    this.isVerified=false;
+  ) {
+
+    this.isVerified = false;
   }
 
   ngOnInit() {
   }
 
-  formDataHandler(event){
-    this.formData=event;
+  formDataHandler(event) {
+    this.formData = event;
   }
 
-  submitFormHandler(event){
-    if(!this.isVerified){
+  submitFormHandler(event) {
+    if (!this.isVerified) {
       this.toastrService.info("Don't forget to press Prieview to check and verify the last changes before you create your trip.", 'Tip');
-      this.isVerified=true;
+      this.isVerified = true;
+    } else {
+      let tripData;
+      if (this.formData.places.length === 1 && this.formData.places[0].trim() === "") {
+        tripData = { ...this.formData, places: [], authorId: localStorage.getItem('uid') }
+      } else {
+        tripData = { ...this.formData, authorId: localStorage.getItem('uid') };
+      }
+      this.tripService.create(tripData);
     }
   }
+
 }

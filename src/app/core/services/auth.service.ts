@@ -66,16 +66,11 @@ export class AuthService {
   }
 
 
-  //If error, console log and notify the user
-  private handleError(error) {
-    console.log(error);
-    this.toastrService.error(error.message, 'Error');
-  }
-
+  
   //Set user data to firestore after succesful registration
   private setUserData(user, displayName: string) {
     const userRef: AngularFirestoreDocument<IUser> = this.afs.doc(`users/${user.uid}`);
-
+    
     const data: IUser = {
       uid: user.uid,
       email: user.email,
@@ -85,7 +80,7 @@ export class AuthService {
     }
     return userRef.set(data);
   }
-
+  
   async logOut() {
     try {
       await this.afAuth.auth.signOut();
@@ -96,7 +91,7 @@ export class AuthService {
       this.handleError(error)
     }
   }
-
+  
   saveUserInStorage(user:IUser){
     localStorage.setItem('displayName', user.displayName);
     if(user.roles.includes('admin')){
@@ -105,8 +100,14 @@ export class AuthService {
       localStorage.setItem('uid', user.uid);
     }
   }
-
+  
   isAdmin(){
     return !!localStorage.getItem('adminId');
+  }
+  
+  //If error, console log and notify the user
+  private handleError(error) {
+    console.log(error);
+    this.toastrService.error(error.message, 'Error');
   }
 }

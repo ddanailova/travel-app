@@ -5,9 +5,10 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { TripDetailsComponent } from './trip-details/trip-details.component';
 import { TripListComponent } from './trip-list/trip-list.component';
+import { UserTripsResolver } from 'src/app/core/resolvers/user-trips.resolver';
 
 const routes: Routes =[
-  { path: "", pathMatch: "full", redirectTo: "all" },
+  { path: "", pathMatch: "full", redirectTo: "mine" },
   {
     path:'create',
     component:CreateComponent,
@@ -25,8 +26,9 @@ const routes: Routes =[
     component:EditComponent,
   },
   {
-    path:'all',
+    path:'mine',
     component:TripListComponent,
+    resolve:{tripsList: UserTripsResolver}
   },
   {
     path:'featured/all',
@@ -40,5 +42,16 @@ const routes: Routes =[
     path:'featured/details/:id',
     component:TripDetailsComponent,
   },
-]
-export const TripRoutingModule = RouterModule.forChild(routes)
+];
+
+@NgModule({
+  imports: [
+  RouterModule.forChild(routes)
+],
+  exports: [],
+  providers:[
+    UserTripsResolver,
+  ]
+})
+
+export class TripRoutingModule {} 

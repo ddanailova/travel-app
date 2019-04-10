@@ -10,7 +10,8 @@
       <label for="password">Password</label>
       <input [ngClass]="{'is-invalid': password.touched && (password.errors?.pattern || password.errors?.required)}" class="form-control" type="password" id="password" name="password" #password="ngModel" ngModel pattern="(?=^.{6,24}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required>
       <div class="invalid-feedback">
-        Password should be between 6 an 24 chars and have at least one number and one uppercase!</div>
+        Password should be between 6 an 24 chars and have at least one number and one uppercase!
+      </div>
     </div>
     <div class="form-group text-center">
       <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Login</button>

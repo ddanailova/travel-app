@@ -17,6 +17,7 @@
                 <p *ngIf="formData && formData.private" class="card-text"><span class="font-weight-bold">Status:</span> Private</p>
               </div>
               <ul *ngIf="formData" class="list-group list-group-flush w-100">
+                <li *ngIf="formData.places.length ===1 && formData.places[0] === ''" class="list-group-item">No places to visit added</li>
                 <li *ngFor="let place of formData.places" class="list-group-item">{{place}}</li>
               </ul>
               <div  class="card-body text-center">
@@ -29,15 +30,17 @@
 <ng-template #mainCard>
     <div class="card" [ngClass]="{'flex-row':fromDetails}">
         <div class="card-header">
-        <img src="../../../../assets/images/card-landscape.jpg" alt="Card image cap">
+        <img *ngIf="!tripData.image" src="../../../../assets/images/card-landscape.jpg" alt="Card image cap">
+        <img *ngIf="tripData.image" src="{{tripData.image}}" alt="Card image cap">
         </div>
         <div class="wrapper">
             <div class="card-body">
 
-                <h5 class="card-title">Malta -Valeta</h5>
-                <p class="card-text"><span class="font-italic">Start date:</span> 24.05.2019</p>
-                <p class="card-text"><span class="font-italic">End date:</span> 30.05.2019</p>
-                <p class="card-text"><span class="font-weight-bold">Status:</span> Public</p>
+                <h5 class="card-title">{{tripData.destination}}</h5>
+                <p class="card-text"><span class="font-italic">Start date: </span>{{tripData.startDate | date: 'MM/dd/yyyy'}}</p>
+                <p  class="card-text"><span class="font-italic">End date: </span> {{tripData.endDate | date: 'MM/dd/yyyy'}}</p>
+                <p *ngIf="!tripData.private" class="card-text"><span class="font-weight-bold">Status:</span> Public</p>
+                <p *ngIf="tripData.private" class="card-text"><span class="font-weight-bold">Status:</span> Private</p>
               </div>
               <ul  *ngIf="!fromList" class="list-group list-group-flush w-100">
                 <li class="list-group-item">First palce</li>
@@ -45,7 +48,7 @@
                 <li class="list-group-item">Last Place</li>
               </ul>
               <div  class="card-body text-center">
-                <button *ngIf="fromList" class="btn btn-primary card-link">Details</button>
+                <button *ngIf="fromList" class="btn btn-primary card-link" [routerLink]="['trip/details', tripData.id]">Details</button>
                 <button *ngIf="!fromList" class="btn btn-primary card-link">Edit</button>
                 <button *ngIf="!fromList" class="btn btn-danger card-link">Delete</button>
               </div>

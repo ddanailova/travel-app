@@ -18,7 +18,7 @@ import { TripService } from 'src/app/core/services/trip.service';
   exports:[
   ],
   providers:[
-    TripService
+    TripService,
   ]
 })
 export class TripModule { }

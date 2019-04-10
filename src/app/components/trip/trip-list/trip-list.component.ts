@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TripService } from 'src/app/core/services/trip.service';
+import { ITrip } from 'src/app/core/models';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-trip-list',
@@ -8,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 export class TripListComponent implements OnInit {
 
   fromList: boolean;
-  constructor() { }
+  list:ITrip[];
+  constructor(
+    private tripService:TripService,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit() {
+    const tripsList = this.route.snapshot.data.tripsList;
+    this.list=tripsList;
   }
-
 }

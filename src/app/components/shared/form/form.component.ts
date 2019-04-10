@@ -32,12 +32,12 @@ export class FormComponent implements OnInit {
   }
   submitHandler(){
     this.formDataEmitter.emit({ 
-      destination:this.f.destination.value,
+      destination:this.f.destination.value.trim(),
       startDate: this.f.startDate.value,
       endDate: this.f.endDate.value,
       private:this.f.private.value,
-      places:this.f.places.value.split(','),//split by regex
-      image:this.f.image.value,
+      places:this.f.places.value.split(/\s*,\s*/),
+      image:this.f.image.value.trim(),
     })
 
   }

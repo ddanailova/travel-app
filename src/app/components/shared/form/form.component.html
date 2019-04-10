@@ -6,21 +6,33 @@
       <form [formGroup]="form" (submit)="submitHandler()">
           <div class="form-group">
               <label for="destination">Destination</label>
-              <input type="text" class="form-control" id="destination" formControlName="destination" required>
-          </div>
+              <input  [ngClass]="{'is-invalid': f.destination.touched && f.destination.errors?.required}" type="text" class="form-control" id="destination" formControlName="destination" required>
+              <div class="invalid-feedback">
+                This field is required!
+              </div>
+            </div>
           <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="startDate">Start Date</label>
-                <input type="date" class="form-control" id="startDate" formControlName="startDate"required>
+                <input [ngClass]="{'is-invalid': f.startDate.touched && f.startDate.errors?.required}" type="date" class="form-control" id="startDate" formControlName="startDate"required>
+                <div class="invalid-feedback">
+                  This field is required!
+                </div>
               </div>
               <div class="form-group col-md-6">
                 <label for="endDate">End Date</label>
-                <input type="date" class="form-control" id="endDate" formControlName="endDate" required>
+                <input [ngClass]="{'is-invalid': f.endDate.touched && f.endDate.errors?.required}" type="date" class="form-control" id="endDate" formControlName="endDate" required>
+                <div class="invalid-feedback">
+                  This field is required!
+                </div>
               </div>
           </div>
           <div class="form-group">
               <label for="image">Image</label>
-              <input type="text" class="form-control" id="image" formControlName="image">
+              <input [ngClass]="{'is-invalid': f.image.dirty && f.image.errors?.pattern}" type="text" class="form-control" id="image" formControlName="image" pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)">
+              <div class="invalid-feedback">
+                Please provide a valid URL starting with http and ending with jpg, gif or png.
+              </div>
           </div>
           <div class="form-group">
               <label for="places">Places to visit <span class="font-italic text-secondary">( example: First Place, Second Place, Third Place )</span></label>
