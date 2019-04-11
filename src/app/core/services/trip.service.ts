@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import {map, tap} from 'rxjs/operators';
+import { identifierModuleUrl } from '@angular/compiler';
 
 
 @Injectable({
@@ -20,7 +21,7 @@ export class TripService {
  async create(tripData: ITrip){
   try{
     await this.firesore.collection('trips').add(tripData);
-    this.toastrService.success(`Congrats you are going to ${tripData.destination}.`, 'Success');
+    this.toastrService.success(`Congrats you are going to ${tripData.destination}!`, 'Success');
       this.router.navigate(['/user/home']);
     }catch(error) {
       this.handleError(error)
@@ -54,6 +55,16 @@ export class TripService {
         } as ITrip;
       })
     )
+  }
+
+  async edit(id: string, tripData: ITrip){
+    try{
+      await this.firesore.doc(`trips/${id}`).update(tripData);
+      this.toastrService.success(`You have edited your trip to ${tripData.destination}!`, 'Success');
+      this.router.navigate(['/trip/details', id]);
+    }catch(error) {
+      this.handleError(error)
+    }
   }
 
   //If error, console log and notify the user

@@ -1,8 +1,4 @@
-<ng-container *ngIf="fromTrip; then tripForm else featuredForm">
 
-  </ng-container>
-  
-  <ng-template #tripForm>
       <form [formGroup]="form" (submit)="submitHandler()">
           <div class="form-group">
               <label for="destination">Destination</label>
@@ -50,7 +46,4 @@
               <button type="submit" class="btn btn-primary ml-auto mr-auto" [disabled]="form.invalid">Preview</button>
           </div>
       </form>
-  </ng-template>
-
-  <ng-template #featuredForm></ng-template>
 

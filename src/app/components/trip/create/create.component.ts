@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CreateComponent implements OnInit {
   fromTrip: boolean;
-  fromCreate: boolean;
+  isPreview: boolean;
   formData: ITrip;
   isVerified: boolean;
 
@@ -31,11 +31,11 @@ export class CreateComponent implements OnInit {
 
   submitFormHandler(event) {
     if (!this.isVerified) {
-      this.toastrService.info("Don't forget to press Prieview to check and verify the last changes before you create your trip.", 'Tip');
+      this.toastrService.info("Don't forget to press Prieview to verify the last changes before you create a trip.", 'Tip');
       this.isVerified = true;
     } else {
       let tripData;
-      if (this.formData.places.length === 1 && this.formData.places[0].trim() === "") {
+      if (this.formData.places.length === 1 && this.formData.places[0].trim() === '') {
         tripData = { ...this.formData, places: [], authorId: localStorage.getItem('uid') }
       } else {
         tripData = { ...this.formData, authorId: localStorage.getItem('uid') };

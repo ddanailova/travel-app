@@ -21,6 +21,7 @@ const routes: Routes =[
   {
     path:'edit/:id',
     component:EditComponent,
+    resolve:{tripData: SingleTripResolver}
   },
   {
     path:'featured/edit/:id',

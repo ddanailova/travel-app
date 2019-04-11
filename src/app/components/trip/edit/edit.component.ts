@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { TripService } from 'src/app/core/services/trip.service';
+import { ToastrService } from 'ngx-toastr';
+import { ITrip } from 'src/app/core/models';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit',
@@ -6,10 +10,47 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
+  fromTrip: boolean;
+  isPreview: boolean;
+  id: string;
+  tripData:ITrip;
+  formData: ITrip;
+  isVerified: boolean;
 
-  constructor() { }
+  constructor(
+    private tripService: TripService,
+    private toastrService: ToastrService,
+    private route:ActivatedRoute
+  ) {
 
-  ngOnInit() {
+    this.isVerified = false;
   }
 
+  ngOnInit() {
+    const id = this.route.snapshot.params.id;
+    this.id=id;
+    const tripData = this.route.snapshot.data.tripData;
+    this.tripData=tripData;
+  }
+
+  formDataHandler(event) {
+    this.formData = event;
+  }
+
+  submitFormHandler(event) {
+    if (!this.isVerified) {
+      this.toastrService.info("Don't forget to press Prieview to verify the last changes before you edit your trip.", 'Tip');
+      this.isVerified = true;
+    } else {
+
+      let newTripData; 
+      if (this.formData.places.length === 1 && this.formData.places[0].trim() === '') {
+        newTripData = { ...this.formData, places: []}
+      } else {
+        newTripData = { ...this.formData};
+      }
+
+      this.tripService.edit(this.id, newTripData);
+    }
+  }
 }

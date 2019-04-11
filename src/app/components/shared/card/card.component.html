@@ -1,30 +1,59 @@
-<ng-container *ngIf="fromCreate; then previewCrad else mainCard">
+<ng-container *ngIf="isPreview; then previewCrad else mainCard">
 
 </ng-container>
 
 <ng-template #previewCrad>
-    <div class="card" [ngClass]="{'flex-row':fromDetails}">
-        <div class="card-header">
-        <img *ngIf="!formData || !formData.image" src="../../../../assets/images/card-landscape.jpg" alt="Card image cap">
-        <img *ngIf="formData && formData.image" src="{{formData.image}}" alt="Card image cap">
-        </div>
-        <div class="wrapper">
-            <div class="card-body">
-                <h5 *ngIf="formData" class="card-title">{{formData.destination}}</h5>
-                <p *ngIf="formData" class="card-text"><span class="font-italic">Start date:</span> {{formData.startDate | date: 'MM/dd/yyyy'}}</p>
-                <p *ngIf="formData" class="card-text"><span class="font-italic">End date:</span> {{formData.endDate | date: 'MM/dd/yyyy'}}</p>
-                <p *ngIf="formData && !formData.private" class="card-text"><span class="font-weight-bold">Status:</span> Public</p>
-                <p *ngIf="formData && formData.private" class="card-text"><span class="font-weight-bold">Status:</span> Private</p>
-              </div>
-              <ul *ngIf="formData" class="list-group list-group-flush w-100">
-                <li *ngIf="formData.places.length ===1 && formData.places[0] === ''" class="list-group-item">No places to visit added</li>
-                <li *ngFor="let place of formData.places" class="list-group-item">{{place}}</li>
-              </ul>
-              <div  class="card-body text-center">
-                <button class="btn btn-success card-link" [disabled]="!formData" (click)="clickHandler($event)">Looks Good!</button>
-              </div>
-        </div>
-      </div>
+  <div class="card" [ngClass]="{'flex-row':fromDetails}">
+      <ng-container *ngIf="formData; then withFormData else withTripData">
+
+      </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #withTripData>
+    <div class="card-header">
+        <img *ngIf="!tripData || !tripData.image" src="../../../../assets/images/card-landscape.jpg" alt="Card image cap">
+        <img *ngIf="tripData && tripData.image" src="{{tripData.image}}" alt="Card image cap">
+  </div>
+  <div class="wrapper">
+    <div class="card-body">
+      <h5 *ngIf="tripData" class="card-title">{{tripData.destination}}</h5>
+      <p *ngIf="tripData" class="card-text"><span class="font-italic">Start date:</span> {{tripData.startDate | date: 'MM/dd/yyyy'}}</p>
+      <p *ngIf="tripData" class="card-text"><span class="font-italic">End date:</span> {{tripData.endDate | date: 'MM/dd/yyyy'}}</p>
+      <p *ngIf="tripData && !tripData.private" class="card-text"><span class="font-weight-bold">Status:</span> Public</p>
+      <p *ngIf="tripData && tripData.private" class="card-text"><span class="font-weight-bold">Status:</span> Private</p>
+    </div>
+    <ul *ngIf="tripData" class="list-group list-group-flush w-100">
+      <li *ngIf="tripData.places.length ===1 && tripData.places[0] === ''" class="list-group-item">No places to visit added</li>
+      <li *ngFor="let place of tripData.places" class="list-group-item">{{place}}</li>
+    </ul>
+    <div  class="card-body text-center">
+      <button class="btn btn-success card-link" [disabled]="!tripData" (click)="clickHandler($event)">Looks Good!</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #withFormData>
+  <div class="card-header">
+        <img *ngIf="!formData.image" src="../../../../assets/images/card-landscape.jpg" alt="Card image cap">
+        <img *ngIf="formData.image" src="{{formData.image}}" alt="Card image cap">
+  </div>
+  <div class="wrapper">
+    <div class="card-body">
+      <h5 class="card-title">{{formData.destination}}</h5>
+      <p class="card-text"><span class="font-italic">Start date:</span> {{formData.startDate | date: 'MM/dd/yyyy'}}</p>
+      <p class="card-text"><span class="font-italic">End date:</span> {{formData.endDate | date: 'MM/dd/yyyy'}}</p>
+      <p *ngIf="!formData.private" class="card-text"><span class="font-weight-bold">Status:</span> Public</p>
+      <p *ngIf="formData.private" class="card-text"><span class="font-weight-bold">Status:</span> Private</p>
+    </div>
+    <ul class="list-group list-group-flush w-100">
+      <li *ngIf="formData.places.length ===1 && formData.places[0] === ''" class="list-group-item">No places to visit added</li>
+      <li *ngFor="let place of formData.places" class="list-group-item">{{place}}</li>
+    </ul>
+    <div  class="card-body text-center">
+      <button class="btn btn-success card-link" (click)="clickHandler($event)">Looks Good!</button>
+    </div>
+  </div>
 </ng-template>
 
 <ng-template #mainCard>

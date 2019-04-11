@@ -21,7 +21,10 @@ input {
 }
 
 .translateY-15vh{
-    transform: translateY(15vh);
+    transform: translateY(15vh);    
+}
+div.translateY-15vh{
+    background-image: linear-gradient(to top, #ffed785b, #ffcf9c3d, #ffc4d636, #faccfc1c, #c9d5fa00);
 }
 
 .custom-shadow,

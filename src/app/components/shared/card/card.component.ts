@@ -8,7 +8,7 @@ import { ITrip } from 'src/app/core/models';
 })
 export class CardComponent implements OnInit {
   @Input('fromDetails') fromDetails:boolean;
-  @Input('fromCreate') fromCreate:boolean;
+  @Input('isPreview') isPreview:boolean;
   @Input('fromList') fromList:boolean;
   @Input('formData') formData:ITrip;
   @Input('tripData') tripData:ITrip;

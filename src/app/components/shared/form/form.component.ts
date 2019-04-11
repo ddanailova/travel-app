@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ITrip } from 'src/app/core/models';
 
 
 @Component({
@@ -8,23 +9,34 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-  @Input('fromTrip') fromTrip:boolean;
-  @Input('fromFeatured') fromFeatured:boolean;
+  @Input('tripData') tripData: ITrip;
   @Output('formDataEmitter') formDataEmitter = new EventEmitter<any>();
   
   form: FormGroup; 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      destination:['',Validators.required],
-      startDate: ['',Validators.required],
-      endDate: ['',Validators.required],
-      private:[false],
-      places:[''],
-      image:[''],
-    });
-
+    if(this.tripData){
+      //Default values for edit form
+      this.form = this.fb.group({
+        destination:[this.tripData.destination,Validators.required],
+        startDate: [this.tripData.startDate,Validators.required],
+        endDate: [this.tripData.endDate,Validators.required],
+        private:[this.tripData.private],
+        places:[this.tripData.places.join(', ')],
+        image:[this.tripData.image],
+      });
+    }else{
+      //Default values for create form
+      this.form = this.fb.group({
+        destination:['',Validators.required],
+        startDate: ['',Validators.required],
+        endDate: ['',Validators.required],
+        private:[false],
+        places:[''],
+        image:[''],
+      });
+    }
   }
   
   get f (){
