@@ -6,5 +6,5 @@ export interface ITrip{
     endDate: Date;
     private:boolean;
     places:string[];
-    image?:string;
+    image:string;
 }

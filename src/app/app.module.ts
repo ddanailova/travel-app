@@ -13,8 +13,7 @@ import {  BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ResponseHandlerInterceptor } from './core/interceptors/response-handler.interceptor';
+import { FeaturedModule } from './components/featured/featured.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +30,7 @@ import { ResponseHandlerInterceptor } from './core/interceptors/response-handler
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    FeaturedModule,
   ],
   providers: [
    

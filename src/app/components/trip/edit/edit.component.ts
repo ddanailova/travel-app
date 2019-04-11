@@ -10,7 +10,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-  fromTrip: boolean;
   isPreview: boolean;
   id: string;
   tripData:ITrip;
@@ -39,7 +38,7 @@ export class EditComponent implements OnInit {
 
   submitFormHandler(event) {
     if (!this.isVerified) {
-      this.toastrService.info("Don't forget to press Prieview to verify the last changes before you edit your trip.", 'Tip');
+      this.toastrService.info("Don't forget to press 'Preview'\n to verify the last changes. To continue press 'Looks Good'again.", 'Tip');
       this.isVerified = true;
     } else {
 

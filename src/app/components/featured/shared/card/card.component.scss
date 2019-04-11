@@ -1,0 +1,18 @@
+.flex-row{
+    flex-direction: row;
+
+    .wrapper,
+    .card-header{
+        flex:1 0 50%;
+    }
+}
+
+.material-icons{
+    color:white;
+    padding: 0.4rem 0 0 0;
+}
+
+.btn:hover .material-icons {
+    color:coral;
+    transition: color 0.3s ease-out;
+}

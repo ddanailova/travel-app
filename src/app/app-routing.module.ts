@@ -6,19 +6,24 @@ import { AuthenticationModule } from './components/authentication/authentication
 import { UserLoginResolver } from './core/resolvers/user-login.resolver';
 import { AuthLoadGuard } from './core/guards/auth.load.guard';
 import { AuthGuard } from './core/guards/auth.guarg';
+import { FeaturedModule } from './components/featured/featured.module';
+import { ListComponent } from './components/featured/list/list.component';
+import { CreateComponent } from './components/featured/create/create.component';
+import { DetailsComponent } from './components/featured/details/details.component';
+import { SingleTripResolver } from './core/resolvers/single-trip.resolver';
 
 
 const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "user/home" },
-  { 
-    path: "home", 
+  {
+    path: "home",
     component: HomeComponent,
   },
-  { 
-    path: "user/home", 
-    component: HomeComponent, 
-    resolve:{user: UserLoginResolver}, 
-    canActivate:[AuthGuard] 
+  {
+    path: "user/home",
+    component: HomeComponent,
+    resolve: { user: UserLoginResolver },
+    canActivate: [AuthGuard]
   },
   // { 
   //   path:"login", 
@@ -28,21 +33,34 @@ const routes: Routes = [
   //   path:"register", 
   //   component:RegisterComponent,
   // },
-  { 
-    path:"trip", 
-    loadChildren:"../app/components/trip/trip.module#TripModule", 
-    canLoad:[AuthLoadGuard]
+  {
+    path: "trip",
+    loadChildren: "../app/components/trip/trip.module#TripModule",
+    canLoad: [AuthLoadGuard]
   },
-  { path:"**", component:NotFoundComponent}
+
+  {
+    path: 'featured', children: [
+      { path: 'all', component: ListComponent },
+      { 
+        path: 'create/:id', 
+        component: CreateComponent,
+        resolve:{tripData: SingleTripResolver}
+      },
+      { path: 'details/:id', component: DetailsComponent },
+    ]
+  },
+  { path: "**", component: NotFoundComponent }
 ];
 
 @NgModule({
   imports: [
-  RouterModule.forRoot(routes),
-  AuthenticationModule
-],
+    RouterModule.forRoot(routes),
+    AuthenticationModule,
+    FeaturedModule,
+  ],
   exports: [RouterModule],
-  providers:[
+  providers: [
     UserLoginResolver,
     AuthLoadGuard,
     AuthGuard,

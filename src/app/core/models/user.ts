@@ -3,5 +3,4 @@ export interface IUser{
     email: string,
     uid:string,
     roles:string[],
-    trips:string[],
 }

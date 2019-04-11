@@ -9,7 +9,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
-  fromTrip: boolean;
   isPreview: boolean;
   formData: ITrip;
   isVerified: boolean;
@@ -31,7 +30,7 @@ export class CreateComponent implements OnInit {
 
   submitFormHandler(event) {
     if (!this.isVerified) {
-      this.toastrService.info("Don't forget to press Prieview to verify the last changes before you create a trip.", 'Tip');
+      this.toastrService.info("Don't forget to press 'Preview' to verify the last changes. To continue press 'Looks Good'again.", 'Tip');
       this.isVerified = true;
     } else {
       let tripData;
@@ -43,5 +42,4 @@ export class CreateComponent implements OnInit {
       this.tripService.create(tripData);
     }
   }
-
 }

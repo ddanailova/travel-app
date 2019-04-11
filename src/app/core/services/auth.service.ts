@@ -83,8 +83,7 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName,
-      roles:['user'],
-      trips:[]
+      roles:['user']
     }
     return userRef.set(data);
   }
