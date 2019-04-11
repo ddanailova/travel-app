@@ -78,7 +78,7 @@
               <div  class="card-body text-center">
                 <button *ngIf="fromList" class="btn btn-primary card-link" [routerLink]="['/trip/details', tripData.id]">Details</button>
                 <button *ngIf="!fromList" class="btn btn-primary card-link" [routerLink]="['/trip/edit', tripData.id]">Edit</button>
-                <button *ngIf="!fromList" class="btn btn-danger card-link">Delete</button>
+                <button *ngIf="!fromList" class="btn btn-danger card-link" (click)="clickHandler($event)">Delete</button>
               </div>
         </div>
       </div>

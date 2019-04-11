@@ -46,6 +46,23 @@ export class TripService {
     )
   }
 
+  getPublicTrips(){
+    return this.firesore.collection<ITrip>('trips',
+      (ref) => ref.where('private', '==', false))
+      .snapshotChanges()
+      .pipe(
+        map(docArray => {
+          return docArray.map(item => {
+            return {
+              id: item.payload.doc.id,
+              ...item.payload.doc.data()
+            } as ITrip;
+          }
+        )}
+      )
+    )
+  }
+
   getById(id:string){
     return this.firesore.collection<ITrip>('trips').doc(id).snapshotChanges().pipe(
       map(docArray => {
@@ -62,6 +79,18 @@ export class TripService {
       await this.firesore.doc(`trips/${id}`).update(tripData);
       this.toastrService.success(`You have edited your trip to ${tripData.destination}!`, 'Success');
       this.router.navigate(['/trip/details', id]);
+    }catch(error) {
+      this.handleError(error)
+    }
+  }
+
+  async delete(id: string){
+    try{
+      if(confirm('Are you sure you want to delete this trip?')){
+        await this.firesore.doc(`trips/${id}`).delete();
+        this.toastrService.success('Trip deleted!', 'Success');
+        this.router.navigate(['/trip/mine']);
+      }
     }catch(error) {
       this.handleError(error)
     }

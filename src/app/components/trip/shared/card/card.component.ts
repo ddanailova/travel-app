@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter, ElementRef, Renderer2} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Renderer2} from '@angular/core';
 import { ITrip } from 'src/app/core/models';
+
 
 @Component({
   selector: 'app-card',
