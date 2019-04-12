@@ -8,11 +8,14 @@
     </div>
     <div class="form-group">
         <label for="story">Short story</label>
-        <textarea class="form-control" id="story" rows="3" formControlName="story"></textarea>
+        <textarea [ngClass]="{'is-invalid': f.story.touched && (f.story.errors?.required || f.story.errors?.maxlength.min)}" class="form-control" id="story" rows="3" formControlName="story"required ></textarea>
+    <div class="invalid-feedback">
+        This field is required!
+    </div>
     </div>
     <div class="form-group">
         <label for="image">Image</label>
-        <input [ngClass]="{'is-invalid': f.image.dirty && f.image.errors?.pattern}" type="text" class="form-control" id="image" formControlName="image" pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)">
+        <input [ngClass]="{'is-invalid': f.image.dirty && f.image.errors?.pattern}" type="text" class="form-control" id="image" formControlName="image">
         <div class="invalid-feedback">
           Please provide a valid URL starting with http and ending with jpg, gif or png.
         </div>

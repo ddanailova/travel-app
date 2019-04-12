@@ -15,12 +15,11 @@ export class FormComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-
       this.form = this.fb.group({
         destination:[this.tripData.destination,Validators.required],
-        story:['',Validators.required],
+        story:['',[Validators.required]],
         places:[this.tripData.places.join(', ')],
-        image:[this.tripData.image],
+        image:[this.tripData.image, Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)]
       });
   }
   
@@ -28,7 +27,7 @@ export class FormComponent implements OnInit {
     return this.form.controls;
   }
   
-  submitHandler(){
+  submitHandler(){  
     this.formDataEmitter.emit({ 
       destination:this.f.destination.value.trim(),
       story: this.f.story.value,

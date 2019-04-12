@@ -24,7 +24,7 @@ export class FormComponent implements OnInit {
         endDate: [this.tripData.endDate,Validators.required],
         private:[this.tripData.private],
         places:[this.tripData.places.join(', ')],
-        image:[this.tripData.image],
+        image:[this.tripData.image, Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)],
       });
     }else{
       //Default values for create form

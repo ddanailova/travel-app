@@ -20,14 +20,14 @@
     <div class="wrapper">
       <div class="card-body">
         <h5 *ngIf="tripData" class="card-title">{{tripData.destination}}</h5>
-        <p *ngIf="tripData.story" class="card-text"><span class="font-weight-bold">Story:</span>{{tripData.story}}</p>
+        <p class="card-text text-danger">No story added yet</p>
       </div>
       <ul *ngIf="tripData" class="list-group list-group-flush w-100">
         <li *ngIf="tripData.places.length ===1 && tripData.places[0] === ''" class="list-group-item">No places to visit added</li>
         <li *ngFor="let place of tripData.places" class="list-group-item">{{place}}</li>
       </ul>
       <div  class="card-body text-center">
-        <button class="btn btn-success card-link" [disabled]="!tripData" (click)="clickHandler($event)">Looks Good!</button>
+        <button class="btn btn-success card-link" disabled (click)="clickHandler($event)">Looks Good!</button>
       </div>
     </div>
   </ng-template>
@@ -41,7 +41,7 @@
     <div class="wrapper">
       <div class="card-body">
         <h5 class="card-title">{{formData.destination}}</h5>
-        <p  class="card-text"><span class="font-weight-bold">Story:</span>{{formData.story}}</p>
+        <p  class="card-text"><span class="font-weight-bold">Story: </span>{{formData.story}}</p>
       </div>
       <ul class="list-group list-group-flush w-100">
         <li *ngIf="formData.places.length ===1 && formData.places[0] === ''" class="list-group-item">No places to visit added</li>
@@ -63,7 +63,7 @@
           <div class="wrapper">
               <div class="card-body"> 
                   <h5 class="card-title">{{tripData.destination}}</h5>
-                  <p  class="card-text"><span class="font-weight-bold">Story:</span>{{formData.story}}</p>
+                  <p *ngIf="tripData" class="card-text"><span class="font-weight-bold">Story: </span>{{tripData.story | slice:0:200}}...</p>
               </div>
                 <ul  *ngIf="!fromList" class="list-group list-group-flush w-100">
                     <li *ngIf="tripData.places.length === 0" class="list-group-item">No places to visit added</li>

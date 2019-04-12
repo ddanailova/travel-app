@@ -24,7 +24,7 @@
     </div>
     <div class="form-group">
         <label for="image">Image</label>
-        <input [ngClass]="{'is-invalid': f.image.dirty && f.image.errors?.pattern}" type="text" class="form-control" id="image" formControlName="image" pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)">
+        <input [ngClass]="{'is-invalid': f.image.dirty && f.image.errors?.pattern}" type="text" class="form-control" id="image" formControlName="image">
         <div class="invalid-feedback">
           Please provide a valid URL starting with http and ending with jpg, gif or png.
         </div>

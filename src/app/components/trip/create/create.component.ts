@@ -33,12 +33,10 @@ export class CreateComponent implements OnInit {
       this.toastrService.info("Don't forget to press 'Preview' to verify the last changes. To continue press 'Looks Good'again.", 'Tip');
       this.isVerified = true;
     } else {
-      let tripData;
+      let tripData = { ...this.formData, authorId: localStorage.getItem('uid') };
       if (this.formData.places.length === 1 && this.formData.places[0].trim() === '') {
-        tripData = { ...this.formData, places: [], authorId: localStorage.getItem('uid') }
-      } else {
-        tripData = { ...this.formData, authorId: localStorage.getItem('uid') };
-      }
+        tripData = { ...this.formData, places: []}
+      } 
       this.tripService.create(tripData);
     }
   }

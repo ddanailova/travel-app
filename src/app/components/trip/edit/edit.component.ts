@@ -42,11 +42,9 @@ export class EditComponent implements OnInit {
       this.isVerified = true;
     } else {
 
-      let newTripData; 
+      let newTripData = { ...this.formData};
       if (this.formData.places.length === 1 && this.formData.places[0].trim() === '') {
         newTripData = { ...this.formData, places: []}
-      } else {
-        newTripData = { ...this.formData};
       }
 
       this.tripService.edit(this.id, newTripData);

@@ -11,6 +11,7 @@ import { ListComponent } from './components/featured/list/list.component';
 import { CreateComponent } from './components/featured/create/create.component';
 import { DetailsComponent } from './components/featured/details/details.component';
 import { SingleTripResolver } from './core/resolvers/single-trip.resolver';
+import { AllFeaturedResolver } from './core/resolvers/all-featured.resolver';
 
 
 const routes: Routes = [
@@ -41,7 +42,11 @@ const routes: Routes = [
 
   {
     path: 'featured', children: [
-      { path: 'all', component: ListComponent },
+      { 
+        path: 'all', 
+        component: ListComponent,
+        resolve:{featuredList: AllFeaturedResolver}
+       },
       { 
         path: 'create/:id', 
         component: CreateComponent,

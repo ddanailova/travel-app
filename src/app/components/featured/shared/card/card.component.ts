@@ -30,5 +30,4 @@ export class CardComponent implements OnInit {
     const btnText = event.target.innerText;
       this.clickButtonEmitter.emit(btnText);
   }
-
 }

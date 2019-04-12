@@ -4,8 +4,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import {map, tap} from 'rxjs/operators';
-import { identifierModuleUrl } from '@angular/compiler';
-
 
 @Injectable({
   providedIn: 'root'
