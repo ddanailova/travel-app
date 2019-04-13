@@ -11,7 +11,7 @@ export class CardComponent implements OnInit {
   @Input('fromDetails') fromDetails:boolean;
   @Input('isPreview') isPreview:boolean;
   @Input('fromList') fromList:boolean;
-  
+
   @Input('formData') formData:ITrip;
   @Input('tripData') tripData:ITrip;
   @Output('clickButtonEmitter') clickButtonEmitter = new EventEmitter<any>();

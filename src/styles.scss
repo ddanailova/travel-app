@@ -6,6 +6,9 @@ html{
 *, *::after, *::before{
     box-sizing: inherit;
 }
+body{
+    background: #F7F7F7;
+}
 
 button:disabled{
     cursor: not-allowed;
@@ -22,9 +25,6 @@ input {
 
 .translateY-13vh{
     transform: translateY(13vh);
-}
-div.translateY-13vh{
-    background-image: linear-gradient(to top, #ffed785b, #ffcf9c3d, #ffc4d636, #faccfc1c, #c9d5fa00);
 }
 
 .custom-shadow,

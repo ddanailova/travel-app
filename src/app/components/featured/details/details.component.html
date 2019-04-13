@@ -1,3 +1,8 @@
-<p>
-  details works!
-</p>
+<app-navigation></app-navigation>
+<div calss="container">
+    <div class="translateY-13vh bg-light custom-box w-75 ml-auto mr-auto mb-5">
+        <app-card [fromDetails]="true" [featuredData]="featuredData" (clickButtonEmitter)="buttonClickHandler($event)"></app-card>
+    </div>
+</div>
+<app-most-liked-section></app-most-liked-section>
+<app-footer></app-footer>

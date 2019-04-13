@@ -13,10 +13,8 @@
 
 <!-- Card template for the edit preview -->
 <ng-template #withTripData>
-    <div class="card-header">
-        <img *ngIf="!tripData || !tripData.image" src="../../../../assets/images/card-landscape.jpg" alt="Card image cap">
-        <img *ngIf="tripData && tripData.image" src="{{tripData.image}}" alt="Card image cap">
-  </div>
+  <img *ngIf="!tripData || !tripData.image" src="../../../../assets/images/card-landscape.jpg" alt="Card image cap">
+  <img *ngIf="tripData && tripData.image" src="{{tripData.image}}" alt="Card image cap">
   <div class="wrapper">
     <div class="card-body">
       <h5 *ngIf="tripData" class="card-title">{{tripData.destination}}</h5>
@@ -37,10 +35,8 @@
 
 <!-- Card template for the create preview -->
 <ng-template #withFormData>
-  <div class="card-header">
-        <img *ngIf="!formData.image" src="../../../../assets/images/card-landscape.jpg" alt="Card image cap">
-        <img *ngIf="formData.image" src="{{formData.image}}" alt="Card image cap">
-  </div>
+  <img *ngIf="!formData.image" src="../../../../assets/images/card-landscape.jpg" alt="Card image cap">
+  <img *ngIf="formData.image" src="{{formData.image}}" alt="Card image cap">
   <div class="wrapper">
     <div class="card-body">
       <h5 class="card-title">{{formData.destination}}</h5>
@@ -62,13 +58,9 @@
 <!-- Card template main card view -->
 <ng-template #mainCard>
     <div class="card" [ngClass]="{'flex-row':fromDetails}">
-        <div class="card-header">
-        <img *ngIf="!tripData.image" src="../../../../assets/images/card-landscape.jpg" alt="Card image cap">
-        <img *ngIf="tripData.image" src="{{tripData.image}}" alt="Card image cap">
-        </div>
+        <ng-container *ngIf="fromDetails; then detailsImage else listItemImage"></ng-container>
         <div class="wrapper">
             <div class="card-body">
-
                 <h5 class="card-title">{{tripData.destination}}</h5>
                 <p class="card-text"><span class="font-italic">Start date: </span>{{tripData.startDate | date: 'MM/dd/yyyy'}}</p>
                 <p  class="card-text"><span class="font-italic">End date: </span> {{tripData.endDate | date: 'MM/dd/yyyy'}}</p>
@@ -76,16 +68,31 @@
                 <p *ngIf="tripData.private" class="card-text"><span class="font-weight-bold">Status:</span> Private</p>
               </div>
               <ul  *ngIf="!fromList" class="list-group list-group-flush w-100">
+                  <li class="list-group-item font-weight-bold">Places to visit:</li>
                   <li *ngIf="tripData.places.length === 0" class="list-group-item">No places to visit added</li>
                   <li *ngFor="let place of tripData.places" class="list-group-item">{{place}}</li>
               </ul>
-              <div  class="card-body text-center">
+              <div  [ngClass]="{'pt-0':fromList}" class="card-body text-center">
                 <button *ngIf="fromList" class="btn btn-primary card-link" [routerLink]="['/trip/details', tripData.id]">Details</button>
                 <ng-container *ngIf="isAdmin; then adminButtons else userButtons"></ng-container>
               </div>
         </div>
       </div>
 </ng-template>
+
+  <!-- Image template for details card -->
+  <ng-template #detailsImage>
+      <div class="card-header">
+          <img *ngIf="!tripData.image" src="../../../../assets/images/card-landscape.jpg" alt="Card image cap">
+          <img *ngIf="tripData.image" src="{{tripData.image}}" alt="Card image cap">
+      </div>
+  </ng-template>
+
+  <!-- Image template for list card -->
+  <ng-template #listItemImage>
+      <img *ngIf="!tripData.image" src="../../../../assets/images/card-landscape.jpg" alt="Card image cap">
+      <img *ngIf="tripData.image" src="{{tripData.image}}" alt="Card image cap">
+  </ng-template>
 
 <!-- Buttons templates for the details card -->
 <ng-template #adminButtons>

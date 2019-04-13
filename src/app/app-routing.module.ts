@@ -11,7 +11,8 @@ import { ListComponent } from './components/featured/list/list.component';
 import { CreateComponent } from './components/featured/create/create.component';
 import { DetailsComponent } from './components/featured/details/details.component';
 import { SingleTripResolver } from './core/resolvers/single-trip.resolver';
-import { AllFeaturedResolver } from './core/resolvers/all-featured.resolver';
+import { AdminGuard } from './core/guards/admin.guard';
+import { SingleFeaturedResolver } from './core/resolvers/single-featured.resolver';
 
 
 const routes: Routes = [
@@ -45,14 +46,18 @@ const routes: Routes = [
       { 
         path: 'all', 
         component: ListComponent,
-        resolve:{featuredList: AllFeaturedResolver}
        },
       { 
         path: 'create/:id', 
         component: CreateComponent,
-        resolve:{tripData: SingleTripResolver}
+        canActivate: [AdminGuard],
+        resolve:{tripData: SingleTripResolver},
       },
-      { path: 'details/:id', component: DetailsComponent },
+      { 
+        path: 'details/:id', 
+        component: DetailsComponent,
+        resolve:{featuredData: SingleFeaturedResolver},
+       },
     ]
   },
   { path: "**", component: NotFoundComponent }
@@ -69,6 +74,7 @@ const routes: Routes = [
     UserLoginResolver,
     AuthLoadGuard,
     AuthGuard,
+    AdminGuard
   ]
 })
 export class AppRoutingModule { }

@@ -7,12 +7,19 @@
     }
 }
 
+.btn.like {
+    position: absolute;
+    top:0.8rem; right:1rem;
+    border:none;
+    outline: none;
+}
 .material-icons{
-    color:white;
-    padding: 0.4rem 0 0 0;
+    color:tomato;
+    font-size: 1.5rem;
+    padding: 0.2rem 0 0 0;
 }
 
 .btn:hover .material-icons {
-    color:coral;
+    color:white;
     transition: color 0.3s ease-out;
 }

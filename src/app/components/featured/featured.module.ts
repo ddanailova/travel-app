@@ -16,7 +16,7 @@ import { FormComponent } from './shared/form/form.component';
     DetailsComponent, 
     ListComponent, 
     CardComponent, 
-    FormComponent
+    FormComponent, 
   ],
   imports: [
     CommonModule,

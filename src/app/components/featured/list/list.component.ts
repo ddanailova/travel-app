@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IFeatured } from './../../../core/models/featured';
 import { FeaturedService } from './../../../core/services/featured.service';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -11,14 +12,12 @@ import { ActivatedRoute } from '@angular/router';
 export class ListComponent implements OnInit {
 
   fromList: boolean;
-  list:IFeatured[];
+  list$:Observable<IFeatured[]>;
   constructor(
-    private tripService:FeaturedService,
-    private route: ActivatedRoute
+    private featuredService:FeaturedService,
     ) { }
 
   ngOnInit() {
-    const featuredList = this.route.snapshot.data.featuredList;
-    this.list=featuredList;
+    this.list$=this.featuredService.getAll();
   }
 }

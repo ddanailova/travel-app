@@ -1,13 +1,9 @@
-
     <app-navigation></app-navigation>
     <div calss="container">
-        <div class="row translateY-13vh w-100 pb-5">
-            <div class="col-2"></div>
-            <div class="col-8 bg-light custom-box">
-                <app-card [fromDetails]="true" [tripData]="tripData" (clickButtonEmitter)="deleteBtnHandler($event)"></app-card>
-            </div>
-          <div class="col-2"></div>
+        <div class="translateY-13vh bg-light custom-box w-75 ml-auto mr-auto mb-5">
+            <app-card fromDetails="true" [tripData]="tripData" (clickButtonEmitter)="deleteBtnHandler($event)"></app-card>
         </div>
     </div>
+    <app-most-liked-section></app-most-liked-section>
     <app-footer></app-footer>
 

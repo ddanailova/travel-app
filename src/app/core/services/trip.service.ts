@@ -72,7 +72,7 @@ export class TripService {
     )
   }
 
-  async edit(id: string, tripData: ITrip){
+  async edit(id: string, tripData: any){
     try{
       await this.firesore.doc(`trips/${id}`).update(tripData);
       this.toastrService.success(`You have edited your trip to ${tripData.destination}!`, 'Success');

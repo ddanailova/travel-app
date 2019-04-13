@@ -5,7 +5,7 @@
           <h1 class="text-center font-weight-bold">Featured Trips List</h1>
           <p class="text-center">Below you can find ideas for your next trip.</p> 
       </div>
-        <ng-container *ngIf="list.length; then mainView else emptyView">
+        <ng-container *ngIf="list$; then mainView else emptyView">
 
         </ng-container>
     </div>
@@ -18,7 +18,7 @@
         </div>
 </ng-template>
 <ng-template #mainView>
-    <div *ngFor="let item of list" class="list-item bg-light custom-box">
-            <app-card [fromList]="true" [tripData]="item"></app-card>
+    <div *ngFor="let item of (list$ | async)" class="list-item bg-light custom-box">
+        <app-card [fromList]="true" [featuredData]="item"></app-card>
     </div>
 </ng-template>

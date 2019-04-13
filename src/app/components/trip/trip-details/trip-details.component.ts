@@ -9,7 +9,7 @@ import { TripService } from 'src/app/core/services/trip.service';
   styleUrls: ['./trip-details.component.scss']
 })
 export class TripDetailsComponent implements OnInit {
-  fromDetails:boolean;
+
   id: string;
   tripData:ITrip;
   constructor(

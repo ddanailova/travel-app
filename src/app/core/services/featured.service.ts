@@ -42,6 +42,47 @@ export class FeaturedService {
       )
     )
   }
+
+  getMostLiked(){
+    return this.firesore.collection<IFeatured>('featured',  (ref) => ref.orderBy('likes', 'desc').limit(3))
+    .snapshotChanges()
+    .pipe(
+      map(docArray => {
+        
+        return docArray.map(item => {
+          return {
+            id: item.payload.doc.id,
+            ...item.payload.doc.data()
+          } as IFeatured;
+        }
+      )}
+    )
+  )
+}
+
+
+  getById(id:string){
+    return this.firesore.collection<IFeatured>('featured').doc(id).snapshotChanges().pipe(
+      map(docArray => {
+        return {
+          id:id,
+          ...docArray.payload.data()
+        } as IFeatured
+      })
+    )
+  }
+
+  async edit(id: string, data: any){
+    try{
+      await this.firesore.doc(`featured/${id}`).update(data);
+      this.toastrService.success(`Thank you for your like!`, 'Success');
+      this.router.navigate([`/featured/details/${id}`]);
+      // this.router.navigate(['/user/home']);
+    }catch(error) {
+      this.handleError(error)
+    }
+  }
+
   //If error, console log and notify the user
   handleError(error) {
     console.log(error);
