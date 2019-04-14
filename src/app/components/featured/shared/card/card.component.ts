@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class CardComponent implements OnInit {
   @Input('fromDetails') fromDetails:boolean;
+  @Input('isLiked') isLiked:boolean;
+  @Input('showReview') showReview:boolean;
   @Input('isPreview') isPreview:boolean;
   @Input('fromList') fromList:boolean;
   

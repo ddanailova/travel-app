@@ -11,8 +11,13 @@
     position: absolute;
     top:0.8rem; right:1rem;
     border:none;
+}
+
+.btn.like:active,
+.btn.like:focus{
     outline: none;
 }
+
 .material-icons{
     color:tomato;
     font-size: 1.5rem;

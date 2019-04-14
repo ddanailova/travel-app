@@ -75,9 +75,7 @@ export class FeaturedService {
   async edit(id: string, data: any){
     try{
       await this.firesore.doc(`featured/${id}`).update(data);
-      this.toastrService.success(`Thank you for your like!`, 'Success');
       this.router.navigate([`/featured/details/${id}`]);
-      // this.router.navigate(['/user/home']);
     }catch(error) {
       this.handleError(error)
     }

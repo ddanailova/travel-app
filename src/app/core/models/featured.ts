@@ -4,6 +4,6 @@ export interface IFeatured{
     story:string,
     places:string[];
     image:string;
-    reviews:string[];
+    reviews:Object[];
     likes:number;
 }

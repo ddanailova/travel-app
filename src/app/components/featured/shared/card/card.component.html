@@ -94,8 +94,9 @@
   </ng-template>
   
   <ng-template #userButtons>
-      <!-- <button *ngIf="!fromList" class="btn btn-primary  card-link" (click)="clickHandler($event)">Review</button> -->
-      <button *ngIf="!fromList" class="btn btn-sm btn-outline-danger card-link rounded-circle like" (click)="clickHandler($event)">
+      <button *ngIf="fromDetails && !showReview" class="btn btn-primary  card-link" (click)="clickHandler($event)">Review</button>
+      <button *ngIf="fromDetails && showReview" class="btn btn-primary  card-link" (click)="clickHandler($event)">Hide Review</button>
+      <button *ngIf="fromDetails && !isLiked" class="btn btn-sm btn-outline-danger card-link rounded-circle like" (click)="clickHandler($event)">
         <i class="material-icons">favorite</i>
       </button>
   </ng-template>

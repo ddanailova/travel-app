@@ -17,7 +17,7 @@ export class FormComponent implements OnInit {
   ngOnInit() {
       this.form = this.fb.group({
         destination:[this.tripData.destination,Validators.required],
-        story:['',[Validators.required]],
+        story:['',[Validators.required, Validators.minLength(95), Validators.maxLength(1000)]],
         places:[this.tripData.places.join(', ')],
         image:[this.tripData.image, Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)]
       });

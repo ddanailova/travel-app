@@ -8,9 +8,9 @@
     </div>
     <div class="form-group">
         <label for="story">Short story</label>
-        <textarea [ngClass]="{'is-invalid': f.story.touched && (f.story.errors?.required || f.story.errors?.maxlength.min)}" class="form-control" id="story" rows="3" formControlName="story"required ></textarea>
+        <textarea [ngClass]="{'is-invalid': f.story.touched && (f.story.errors?.required || f.story.errors?.maxlength || f.story.errors?.minlength)}" class="form-control" id="story" rows="3" formControlName="story"required ></textarea>
     <div class="invalid-feedback">
-        This field is required!
+        This field is required and must be beteen 95 and 1000 chars!
     </div>
     </div>
     <div class="form-group">

@@ -8,6 +8,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { FooterComponent } from './footer/footer.component';
 import { MostLikedSectionComponent } from './most-liked-section/most-liked-section.component';
 import { FeaturedService } from 'src/app/core/services/featured.service';
+import { ReviewsSectionComponent } from './reviews-section/reviews-section.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FeaturedService } from 'src/app/core/services/featured.service';
     NavigationComponent,
     NotFoundComponent,
     FooterComponent,
-    MostLikedSectionComponent
+    MostLikedSectionComponent,
+    ReviewsSectionComponent
   ],
   imports: [
 CommonModule,
@@ -26,7 +28,8 @@ CommonModule,
     NavigationComponent,
     FooterComponent,
     NotFoundComponent,
-    MostLikedSectionComponent
+    MostLikedSectionComponent,
+    ReviewsSectionComponent
   ],
   providers:[
     FeaturedService
