@@ -58,7 +58,8 @@ const routes: Routes = [
         component: DetailsComponent,
         resolve:{featuredData: SingleFeaturedResolver},
        },
-    ]
+    ],
+    canActivate: [AuthGuard]
   },
   { path: "**", component: NotFoundComponent }
 ];

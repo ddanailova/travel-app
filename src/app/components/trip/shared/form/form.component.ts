@@ -34,7 +34,7 @@ export class FormComponent implements OnInit {
         endDate: ['',Validators.required],
         private:[false],
         places:[''],
-        image:[''],
+        image:['', Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)],
       });
     }
   }

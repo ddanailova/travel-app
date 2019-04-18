@@ -1,7 +1,7 @@
 <form [formGroup]="form" (submit)="submitHandler()">
     <div class="form-group">
         <label for="destination">Destination</label>
-        <input  [ngClass]="{'is-invalid': f.destination.touched && f.destination.errors?.required}" type="text" class="form-control" id="destination" formControlName="destination" required>
+        <input  [ngClass]="{'is-invalid': f.destination.touched && f.destination.hasError('required')}" type="text" class="form-control" id="destination" formControlName="destination">
         <div class="invalid-feedback">
           This field is required!
         </div>
@@ -9,14 +9,14 @@
     <div class="form-row">
         <div class="form-group col-md-6">
           <label for="startDate">Start Date</label>
-          <input [ngClass]="{'is-invalid': f.startDate.touched && f.startDate.errors?.required}" type="date" class="form-control" id="startDate" formControlName="startDate"required>
+          <input [ngClass]="{'is-invalid': f.startDate.touched && f.startDate.hasError('required')}" type="date" class="form-control" id="startDate" formControlName="startDate"required>
           <div class="invalid-feedback">
             This field is required!
           </div>
         </div>
         <div class="form-group col-md-6">
           <label for="endDate">End Date</label>
-          <input [ngClass]="{'is-invalid': f.endDate.touched && f.endDate.errors?.required}" type="date" class="form-control" id="endDate" formControlName="endDate" required>
+          <input [ngClass]="{'is-invalid': f.endDate.touched && f.endDate.hasError('required')}" type="date" class="form-control" id="endDate" formControlName="endDate" required>
           <div class="invalid-feedback">
             This field is required!
           </div>
@@ -24,7 +24,7 @@
     </div>
     <div class="form-group">
         <label for="image">Image</label>
-        <input [ngClass]="{'is-invalid': f.image.dirty && f.image.errors?.pattern}" type="text" class="form-control" id="image" formControlName="image">
+        <input [ngClass]="{'is-invalid': f.image.dirty && f.image.hasError('pattern')}" type="text" class="form-control" id="image" formControlName="image">
         <div class="invalid-feedback">
           Please provide a valid URL starting with http and ending with jpg, gif or png.
         </div>

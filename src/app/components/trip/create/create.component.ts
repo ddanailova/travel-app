@@ -35,7 +35,7 @@ export class CreateComponent implements OnInit {
     } else {
       let tripData = { ...this.formData, authorId: localStorage.getItem('uid') };
       if (this.formData.places.length === 1 && this.formData.places[0].trim() === '') {
-        tripData = { ...this.formData, places: []}
+        tripData = { ...tripData, places: []}
       } 
       this.tripService.create(tripData);
     }

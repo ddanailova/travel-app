@@ -5,8 +5,8 @@ import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
-import { Observable, of as observableOf } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable, of as observableOf, Subject } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
 import { IUser } from '../models';
 import { ToastrService } from 'ngx-toastr';
 
@@ -18,7 +18,8 @@ export class AuthService {
   user$: Observable<IUser>;
 
   private _isAuth = false;
-  
+  private _isAdmin = false;
+
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
@@ -40,7 +41,8 @@ export class AuthService {
   }
 
   get isAdmin(){
-    return !!localStorage.getItem('adminId');
+    return this._isAdmin || !!localStorage.getItem('adminId');
+
   }
   get isAuth(){
     return this._isAuth || (!!localStorage.getItem('uid') || this.isAdmin);
@@ -65,6 +67,11 @@ export class AuthService {
       this.user$.subscribe(data=>{
         if(data){
           this.saveUserInStorage(data)
+          if(data.roles.includes('admin')){
+            this._isAdmin=true;
+          }else{
+            this._isAdmin=false;
+          }
         }
       });
       this.toastrService.success('Login successful!', 'Success');
@@ -109,7 +116,6 @@ export class AuthService {
     }
   }
   
-
   //If error, console log and notify the user
   private handleError(error) {
     console.log(error);

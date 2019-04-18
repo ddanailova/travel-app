@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
 
 
@@ -10,10 +10,11 @@ import { AuthService } from '../../../core/services/auth.service';
 export class NavigationComponent implements OnInit {
   isAdmin:boolean;
   constructor(private authService: AuthService) { 
-    this.isAdmin = authService.isAdmin;
+    
   }
 
   ngOnInit() {
+    this.isAdmin = this.authService.isAdmin;
   }
 
   async logOut(){

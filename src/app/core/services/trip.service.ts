@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { ITrip } from '../models';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
@@ -26,11 +26,12 @@ export class TripService {
     }
   }
 
+  
   getUserTrips() {
     const uid = localStorage.getItem('uid');
     return this.firesore.collection<ITrip>('trips',
-      (ref) => ref.where('authorId', '==', uid))
-      .snapshotChanges()
+      (ref) => ref.where('authorId', '==', uid)
+      ).snapshotChanges()
       .pipe(
         map(docArray => {
           return docArray.map(item => {

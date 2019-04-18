@@ -44,7 +44,7 @@ export class EditComponent implements OnInit {
 
       let newTripData = { ...this.formData};
       if (this.formData.places.length === 1 && this.formData.places[0].trim() === '') {
-        newTripData = { ...this.formData, places: []}
+        newTripData = { ...newTripData, places: []}
       }
 
       this.tripService.edit(this.id, newTripData);

@@ -29,6 +29,6 @@
     </div>
   </div>
   <div class="form-group text-center">
-    <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Register</button>
+    <button class="btn btn-primary" type="submit" [disabled]="form.invalid || password.value !== confirmPassword.value">Register</button>
   </div>
 </form>
