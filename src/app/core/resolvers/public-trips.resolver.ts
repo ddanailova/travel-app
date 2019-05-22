@@ -7,7 +7,7 @@ import { first } from 'rxjs/operators';
 @Injectable({
     providedIn:'root'
 })
-export class PublicTripsResolver implements Resolve<ITrip>{
+export class PublicTripsResolver implements Resolve<any>{
     constructor(private tripService: TripService){}
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
         return this.tripService.getPublicTrips().pipe(first())

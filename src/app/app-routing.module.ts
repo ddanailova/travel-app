@@ -27,14 +27,7 @@ const routes: Routes = [
     resolve: { user: UserLoginResolver },
     canActivate: [AuthGuard]
   },
-  // { 
-  //   path:"login", 
-  //   component:LoginComponent,
-  // },
-  // { 
-  //   path:"register", 
-  //   component:RegisterComponent,
-  // },
+
   {
     path: "trip",
     loadChildren: "../app/components/trip/trip.module#TripModule",
